@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { StyleSheet, View, Text } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import Button from "./Button";
-import { addDeck } from "../actions/decks";
+import { handleAddDeck } from "../actions/decks";
 
 const styles = StyleSheet.create({
   addDeckContainer: {
@@ -77,7 +77,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) =>  {
   return {
-    addNewDeck: name => dispatch(addDeck(name))
+    addNewDeck: name => dispatch(handleAddDeck(name))
   };
 }
 

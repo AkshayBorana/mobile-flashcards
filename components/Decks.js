@@ -43,9 +43,9 @@ class Decks extends React.Component {
     return (
       <TouchableOpacity
         style={styles.items}
-        key={item}
+        key={item.id}
         activeOpacity={0.7}
-        onPress={() => this.openDeckPage(deck)}
+        onPress={() => this.goToDeckPage(deck)}
       >
         <Text style={{ fontSize: 24, color: "white" }}>{deck.name}</Text>
         <Text style={{ fontSize: 18, color: "white" }}>
@@ -55,12 +55,12 @@ class Decks extends React.Component {
     );
   };
 
-  openAddDeckPage = () => {
+  goToAddDeckPage = () => {
     const { navigation } = this.props;
     navigation.push("Add Deck");
   };
 
-  openDeckPage = deck => {
+  goToDeckPage = deck => {
     const { navigation } = this.props;
     navigation.push("Deck Page", deck);
   };
@@ -76,6 +76,7 @@ class Decks extends React.Component {
           <FlatList
             data={Object.keys(decks)}
             renderItem={this.renderDeckItem}
+            keyExtractor={item => `${item}`}
           />
         ) : (
           <View style={styles.infoTextContainer}>
@@ -84,7 +85,7 @@ class Decks extends React.Component {
           </View>
         )
         }
-        <Button text="Add New Deck" onPress={this.openAddDeckPage} />
+        <Button text="Add New Deck" onPress={this.goToAddDeckPage} />
       </View>
     );
   }

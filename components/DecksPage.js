@@ -19,9 +19,14 @@ const styles = StyleSheet.create({
 
 class DecksPage extends React.Component {
 
-  openAddCardPage = () => {
+  goToAddCardPage = () => {
     const { navigation, deck } = this.props;
     navigation.push("Add Card", deck);
+  };
+
+  goToQuizPage = () => {
+    const { navigation, deck } = this.props;
+    navigation.push("Take Quiz", deck);
   };
 
   render() {
@@ -35,8 +40,18 @@ class DecksPage extends React.Component {
           { deck.cards.length } card{ deck.cards.length !== 1 && 's' }
         </Text>
         <Button
+          text="Take a Quiz"
+          style={{
+            margin: 0,
+            marginTop: 20,
+            backgroundColor: "black",
+            padding: 8
+          }}
+          onPress={this.goToQuizPage}
+        />
+        <Button
           text='Add a Card'
-          onPress={ this.openAddCardPage }
+          onPress={ this.goToAddCardPage }
           style={{ margin: 0, marginTop: 30, backgroundColor: 'black' }}
         />
       </View>

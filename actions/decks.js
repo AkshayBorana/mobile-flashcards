@@ -25,7 +25,7 @@ export function receiveDeck(decks) {
   }
 }
 
-export function handleAddDeck(name, calBackFunc) {
+export function handleAddDeck(name) {
   return dispatch => {
     const deck = {
       name,
@@ -34,7 +34,7 @@ export function handleAddDeck(name, calBackFunc) {
     };
     saveDeck(deck).then(() => {
       dispatch(addDeck(deck));
-      calBackFunc(deck);
+      // calBackFunc(deck);
     });
   };
 }
@@ -45,14 +45,15 @@ export function handleAddCardToDeck(deckId, card) {
       ...card,
       id: Date.now()
     };
-    saveCard(deckId, card).then(() => dispatch(addCardToDeck(deckId, newCard)));
+    saveCard(deckId, card)
+     .then(() => dispatch(addCardToDeck(deckId, newCard)));
   };
 }
 
 export function handleInitialData() {
   return dispatch => {
     getDecks().then(decks => {
-      dispatch(addDecks(decks || []));
+      dispatch(receiveDeck(decks));
     });
   }
 }

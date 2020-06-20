@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet, View } from 'react-native';
 import Button from './Button';
-import { addCardToDeck } from '../actions/decks';
+import { handleAddCardToDeck } from '../actions/decks';
 import { connect } from 'react-redux';
 import { TextInput } from 'react-native-gesture-handler';
 
@@ -91,7 +91,7 @@ const mapStateToProps = (state, { route }) => {
 const mapDispatchToProps = (dispatch, { route })  =>{
   const { id: deckId } = route.params;
   return {
-    addNewCard: card => dispatch(addCardToDeck(deckId, card))
+    addNewCard: card => dispatch(handleAddCardToDeck(deckId, card))
   };
 }
 
