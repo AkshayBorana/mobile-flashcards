@@ -4,6 +4,10 @@ import Button from './Button';
 import { connect } from 'react-redux';
 
 const styles = StyleSheet.create({
+    infoTextContainer: {
+      alignItems: "center",
+      marginTop: 20
+    },
     decksPage: {
       padding: 30,
       margin: 20
@@ -47,8 +51,16 @@ class DecksPage extends React.Component {
             backgroundColor: "black",
             padding: 8
           }}
+          disabled={deck.cards.length === 0}
           onPress={this.goToQuizPage}
         />
+
+        {deck.cards.length === 0 && (
+          <View style={styles.infoTextContainer}>
+            <Text>(Add cards to take a quiz)</Text>
+          </View>
+        )}
+
         <Button
           text='Add a Card'
           onPress={ this.goToAddCardPage }
