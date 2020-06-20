@@ -25,7 +25,7 @@ export function receiveDeck(decks) {
   }
 }
 
-export function handleAddDeck(name) {
+export function handleAddDeck(name, callBackFunc) {
   return dispatch => {
     const deck = {
       name,
@@ -34,6 +34,7 @@ export function handleAddDeck(name) {
     };
     saveDeck(deck).then(() => {
       dispatch(addDeck(deck));
+      callBackFunc(deck);
     });
   };
 }

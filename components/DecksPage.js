@@ -55,11 +55,11 @@ class DecksPage extends React.Component {
           onPress={this.goToQuizPage}
         />
 
-        {deck.cards.length === 0 && (
+        {/* {deck.cards.length === 0 && (
           <View style={styles.infoTextContainer}>
             <Text>(Add cards to take a quiz)</Text>
           </View>
-        )}
+        )} */}
 
         <Button
           text='Add a Card'

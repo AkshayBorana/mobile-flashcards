@@ -60,7 +60,7 @@ export default class App extends React.Component {
                 name="Take a Quiz"
                 component={TakeQuiz}
                 options={{
-                  title: "Take a Quiz "
+                  title: "Take Quiz "
                 }} />
             </Stack.Navigator>
           </View>

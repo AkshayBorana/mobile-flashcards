@@ -41,8 +41,13 @@ class AddDeck extends React.Component {
   handleCreateDeck = () => {
     const { deckName } = this.state;
     const { addNewDeck, navigation } = this.props;
-    addNewDeck(deckName);
-    navigation.pop();
+    addNewDeck(deckName, deck => {
+      navigation.pop();
+      navigation.push("Deck Page", {
+        id: deck.id,
+        name: deck.name
+      });
+    });
   };
 
   render() {
@@ -77,7 +82,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) =>  {
   return {
-    addNewDeck: name => dispatch(handleAddDeck(name))
+    addNewDeck: (name, callBackFunc) => dispatch(handleAddDeck(name, callBackFunc))
   };
 }
 
