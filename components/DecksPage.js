@@ -25,12 +25,12 @@ class DecksPage extends React.Component {
 
   goToAddCardPage = () => {
     const { navigation, deck } = this.props;
-    navigation.push("Add Card", deck);
+    navigation.push("Add Card", { id: deck.id, name: deck.name });
   };
 
   goToQuizPage = () => {
     const { navigation, deck } = this.props;
-    navigation.push("Take Quiz", deck);
+    navigation.push("Take Quiz", { id: deck.id, name: deck.name });
   };
 
   render() {

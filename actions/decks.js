@@ -34,7 +34,6 @@ export function handleAddDeck(name) {
     };
     saveDeck(deck).then(() => {
       dispatch(addDeck(deck));
-      // calBackFunc(deck);
     });
   };
 }
@@ -53,7 +52,7 @@ export function handleAddCardToDeck(deckId, card) {
 export function handleInitialData() {
   return dispatch => {
     getDecks().then(decks => {
-      dispatch(receiveDeck(decks));
+      dispatch(receiveDeck(decks || []));
     });
   }
 }
