@@ -5,9 +5,11 @@ import { Provider } from 'react-redux';
 import rootReducer from './reduecrs';
 import { createStore } from 'redux';
 import Decks from './components/Decks';
+import AddDeck from './components/AddDeck';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import AddDeck from './components/AddDeck';
+import DecksPage from "./components/DecksPage";
+
 
  const instructions = Platform.select({
   ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
@@ -25,9 +27,16 @@ export default function App() {
             <Stack.Screen
               name="Decks"
               component={Decks}
-              options={{ title: "Decks" }}
+              options={{ title: "Mobile Flashacrds" }}
             />
             <Stack.Screen name="Add Deck" component={AddDeck} />
+            <Stack.Screen
+              name="Deck Page"
+              component={DecksPage}
+              options={({ route }) => {
+                return { title: route.params.name };
+              }}
+            />
           </Stack.Navigator>
         </View>
       </Provider>

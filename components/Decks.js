@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import Button from "./Button";
 import {
   View,
   Text,
@@ -8,19 +9,47 @@ import {
   StyleSheet,
   TouchableOpacity
 } from "react-native";
-import Button from "./Button";
+
+const styles = StyleSheet.create({
+    decksContainer: {
+      paddingTop: 50,
+      justifyContent: "flex-start",
+      alignItems: "center"
+    },
+    infoTextContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+      },
+    items: {
+      borderRadius: 4,
+      backgroundColor: "cornflowerblue",
+      padding: 30,
+      margin: 15,
+
+    },
+    infoTxt: {
+      fontSize: 24,
+      marginBottom: 12
+    }
+  });
 
 class Decks extends React.Component {
+
   renderDeckItem = ({ item }) => {
+
+    const deck = this.props.decks[item];
+
     return (
       <TouchableOpacity
-        style={styles.listItem}
-        key={item.index}
+        style={styles.items}
+        key={item}
         activeOpacity={0.7}
+        onPress={() => this.openDeckPage(deck)}
       >
-        <Text style={{ fontSize: 24, color: "white" }}>{item.name}</Text>
+        <Text style={{ fontSize: 24, color: "white" }}>{deck.name}</Text>
         <Text style={{ fontSize: 18, color: "white" }}>
-          {item.cards.length} card{item.cards.length !== 1 && "s"}
+          {deck.cards.length} card{deck.cards.length !== 1 && "s"}
         </Text>
       </TouchableOpacity>
     );
@@ -31,53 +60,40 @@ class Decks extends React.Component {
     navigation.push("Add Deck");
   };
 
+  openDeckPage = deck => {
+    const { navigation } = this.props;
+    navigation.push("Deck Page", deck);
+  };
+
   render() {
+
     const { decks } = this.props;
+
     return (
-      <View style={styles.constainer}>
+      <View style={styles.decksContainer}>
         <StatusBar />
-        {!!decks.length ? (
-          <FlatList data={decks} renderItem={this.renderDeckItem} />
+        {!!Object.keys(decks).length ? (
+          <FlatList
+            data={Object.keys(decks)}
+            renderItem={this.renderDeckItem}
+          />
         ) : (
           <View style={styles.infoTextContainer}>
             <Text style={styles.infoTxt}>Sorry your Deck is empty...</Text>
             <Text>Click on the below button to create new deck.</Text>
           </View>
-        )}
+        )
+        }
         <Button text="Add New Deck" onPress={this.openAddDeckPage} />
       </View>
     );
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
     decks: state.decks
   };
 }
 
 export default connect(mapStateToProps)(Decks);
-
-const styles = StyleSheet.create({
-  constainer: {
-    justifyContent: "flex-start",
-    alignItems: "center",
-    padding: 50
-  },
-  listItem: {
-    flex: 1,
-    padding: 20,
-    margin: 10,
-    borderRadius: 6,
-    elevation: 6
-  },
-  infoTextContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  infoTxt: {
-    fontSize: 40,
-    marginBottom: 10
-  }
-});
