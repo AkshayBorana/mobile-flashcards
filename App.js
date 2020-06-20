@@ -6,9 +6,11 @@ import rootReducer from './reduecrs';
 import { createStore } from 'redux';
 import Decks from './components/Decks';
 import AddDeck from './components/AddDeck';
+import DecksPage from "./components/DecksPage";
+import AddNewCard from "./components/AddNewCard";
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import DecksPage from "./components/DecksPage";
+
 
 
  const instructions = Platform.select({
@@ -33,6 +35,13 @@ export default function App() {
             <Stack.Screen
               name="Deck Page"
               component={DecksPage}
+              options={({ route }) => {
+                return { title: route.params.name };
+              }}
+            />
+            <Stack.Screen
+              name="Add New Card"
+              component={AddNewCard}
               options={({ route }) => {
                 return { title: route.params.name };
               }}

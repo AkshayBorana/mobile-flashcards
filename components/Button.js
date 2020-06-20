@@ -1,19 +1,6 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
 
-export default function Button({ text, onPress, style, disabled }) {
-  return (
-    <TouchableOpacity
-      style={[styles.btnStyle, style, disabled ? { opacity: 0.5 } : {}]}
-      activeOpacity={0.9}
-      onPress={onPress}
-      disabled={disabled}
-    >
-      <Text style={styles.btnTxt}>{text}</Text>
-    </TouchableOpacity>
-  );
-}
-
 const styles = StyleSheet.create({
   btnStyle: {
     padding: 10,
@@ -28,3 +15,16 @@ const styles = StyleSheet.create({
     color: "white"
   }
 });
+
+export default function Button({ text, onPress, style, disabled }) {
+  return (
+    <TouchableOpacity
+      style={[styles.btnStyle, style, disabled ? { opacity: 0.5 } : {}]}
+      activeOpacity={0.9}
+      onPress={onPress}
+      disabled={disabled}
+    >
+      <Text style={styles.btnTxt}>{text}</Text>
+    </TouchableOpacity>
+  );
+}

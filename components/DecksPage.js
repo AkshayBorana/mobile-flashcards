@@ -18,8 +18,16 @@ const styles = StyleSheet.create({
   });
 
 class DecksPage extends React.Component {
+
+  openAddCardPage = () => {
+    const { navigation, deck } = this.props;
+    navigation.push("Add Card", deck);
+  };
+
   render() {
+
     const { deck } = this.props;
+
     return (
       <View style={ styles.decksPage }>
         <Text style={ styles.decksPageTitle }>{ deck.name }</Text>
@@ -28,6 +36,7 @@ class DecksPage extends React.Component {
         </Text>
         <Button
           text='Add a Card'
+          onPress={ this.openAddCardPage }
           style={{ margin: 0, marginTop: 30, backgroundColor: 'black' }}
         />
       </View>
