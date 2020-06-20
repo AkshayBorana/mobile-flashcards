@@ -9,11 +9,12 @@ import {
 const styles = StyleSheet.create({
     listItem: {
       flex: 1,
-      padding: 20,
+      padding: 10,
       margin: 10,
-      borderRadius: 6,
-      elevation: 6,
-    //   backgroundColor: "cornflowerblue"
+      borderRadius: 4,
+      backgroundColor: "black",
+      width: "autho",
+      height: 80
     }
   });
 

@@ -24,9 +24,10 @@ const styles = StyleSheet.create({
       },
     items: {
       borderRadius: 4,
-      backgroundColor: "black",
+      // backgroundColor: "black",
       padding: 20,
       margin: 15,
+      color: "black"
 
     },
     infoTxt: {
@@ -72,6 +73,7 @@ class Decks extends React.Component {
             data={Object.keys(decks)}
             renderItem={this.renderDeckItem}
             keyExtractor={item => `${item}`}
+            style={styles.items}
           />
         ) : (
           <View style={styles.infoTextContainer}>

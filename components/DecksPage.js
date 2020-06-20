@@ -10,7 +10,9 @@ const styles = StyleSheet.create({
     },
     decksPage: {
       padding: 30,
-      margin: 20
+      margin: 20,
+      width: 400,
+      margin: "auto"
     },
     decksPageTitle: {
       fontSize: 28,
@@ -25,12 +27,12 @@ class DecksPage extends React.Component {
 
   goToAddCardPage = () => {
     const { navigation, deck } = this.props;
-    navigation.push("Add Card", { id: deck.id, name: deck.name });
+    navigation.push("Add New Card", { id: deck.id, name: deck.name });
   };
 
   goToQuizPage = () => {
     const { navigation, deck } = this.props;
-    navigation.push("Take Quiz", { id: deck.id, name: deck.name });
+    navigation.push("Take a Quiz", { id: deck.id, name: deck.name });
   };
 
   render() {

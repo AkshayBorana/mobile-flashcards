@@ -8,19 +8,23 @@ import { TextInput } from 'react-native-gesture-handler';
 const styles = StyleSheet.create({
   addNewCardContainer: {
     flex: 1,
-    padding: 24
+    padding: 24,
+    justifyContent: 'center',
+    width: 500,
+    margin: "auto"
   },
   title: {
     fontSize: 20
   },
   textInput: {
-    fontSize: 30,
+    width: 400,
+    margin: "auto",
+    fontSize: 18,
     borderWidth: 1,
     marginTop: 18,
     padding: 20,
     borderRadius: 4,
     borderColor: "grey",
-
   }
 });
 
@@ -51,7 +55,7 @@ class AddNewCard extends Component {
 
     return (
 
-      <View style={ styles.container }>
+      <View style={ styles.addNewCardContainer }>
         <Text style={ styles.title }>Add New Card to '{ deck.name }'</Text>
         <TextInput
           style={ styles.textInput }
