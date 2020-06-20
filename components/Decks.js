@@ -1,14 +1,15 @@
-import React from "react";
-import { connect } from "react-redux";
-import Button from "./Button";
-import Deck from "./Deck";
+import React from 'react';
+import { connect } from 'react-redux';
+import Button from './Button';
+import Deck from './Deck';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   View,
   Text,
   StatusBar,
   FlatList,
   StyleSheet,
-} from "react-native";
+} from 'react-native';
 
 const styles = StyleSheet.create({
     decksContainer: {
@@ -64,7 +65,7 @@ class Decks extends React.Component {
     const { decks } = this.props;
 
     return (
-      <View style={styles.decksContainer}>
+      <SafeAreaView style={styles.decksContainer}>
         <StatusBar />
         {!!Object.keys(decks).length ? (
           <FlatList
@@ -80,7 +81,7 @@ class Decks extends React.Component {
         )
         }
         <Button text="Add New Deck" onPress={this.goToAddDeckPage} />
-      </View>
+      </SafeAreaView>
     );
   }
 }
