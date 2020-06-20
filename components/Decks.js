@@ -1,13 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import Button from "./Button";
+import Deck from "./Deck";
 import {
   View,
   Text,
   StatusBar,
   FlatList,
   StyleSheet,
-  TouchableOpacity
 } from "react-native";
 
 const styles = StyleSheet.create({
@@ -41,17 +41,11 @@ class Decks extends React.Component {
     const deck = this.props.decks[item];
 
     return (
-      <TouchableOpacity
-        style={styles.items}
+      <Deck
         key={item.id}
-        activeOpacity={0.7}
-        onPress={() => this.goToDeckPage(deck)}
-      >
-        <Text style={{ fontSize: 24, color: "white" }}>{deck.name}</Text>
-        <Text style={{ fontSize: 18, color: "white" }}>
-          {deck.cards.length} card{deck.cards.length !== 1 && "s"}
-        </Text>
-      </TouchableOpacity>
+        deck={deck}
+        openDeckPage={() => this.goToDeckPage(deck)}
+      />
     );
   };
 
