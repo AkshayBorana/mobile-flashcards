@@ -1,28 +1,46 @@
-import * as React from 'react';
+// import * as React from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { Provider } from 'react-redux';
+import rootReducer from './reduecrs';
+import { createStore } from 'redux';
+import Decks from './components/Decks';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import AddDeck from './components/AddDeck';
 
  const instructions = Platform.select({
   ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
   android: `Double tap R on your keyboard to reload,\nShake or press menu button for dev menu`,
 });
 
- export default function App() {
+const Stack = createStackNavigator();
+
+export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.welcome}>Welcome to React Native!</Text>
-      <Text style={styles.instructions}>To get started, edit App.js</Text>
-      <Text style={styles.instructions}>{instructions}</Text>
-      <Text>HI</Text>
-    </View>
+    <NavigationContainer>
+      <Provider store={createStore(rootReducer)}>
+        <View style={styles.container}>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Decks"
+              component={Decks}
+              options={{ title: "Decks" }}
+            />
+            <Stack.Screen name="Add Deck" component={AddDeck} />
+          </Stack.Navigator>
+        </View>
+      </Provider>
+    </NavigationContainer>
   );
 }
 
  const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'stretch',
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+
   },
   welcome: {
     fontSize: 20,

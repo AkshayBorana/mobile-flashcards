@@ -2,28 +2,28 @@ import React from "react";
 import { connect } from "react-redux";
 import { StyleSheet, View, Text } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
-import PrimaryButton from "./PrimaryButton";
+import Button from "./Button";
 import { addDeck } from "../actions/decks";
 
- class AddDeck extends React.Component {
+class AddDeck extends React.Component {
   state = {
     deckName: ""
   };
 
-   handleTextChange = text => {
+  handleTextChange = text => {
     this.setState(() => {
       return { deckName: text };
     });
   };
 
-   handleCreateDeck = () => {
+  handleCreateDeck = () => {
     const { deckName } = this.state;
     const { addNewDeck, navigation } = this.props;
     addNewDeck(deckName);
     navigation.pop();
   };
 
-   render() {
+  render() {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Add New Deck</Text>
@@ -33,7 +33,7 @@ import { addDeck } from "../actions/decks";
           value={this.state.deckName}
           onChangeText={this.handleTextChange}
         />
-        <PrimaryButton
+        <Button
           text="Add"
           style={{
             margin: 0,
@@ -49,17 +49,17 @@ import { addDeck } from "../actions/decks";
   }
 }
 
- function mapStateToProps(state) {
+function mapStateToProps(state) {
   return {};
 }
 
- function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     addNewDeck: name => dispatch(addDeck(name))
   };
 }
 
- const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24
@@ -78,4 +78,4 @@ import { addDeck } from "../actions/decks";
   }
 });
 
- export default connect(mapStateToProps, mapDispatchToProps)(AddDeck);
+export default connect(mapStateToProps, mapDispatchToProps)(AddDeck);
