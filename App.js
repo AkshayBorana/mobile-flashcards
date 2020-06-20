@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import rootReducer from './reduecrs';
 import middleware from "./middleware";
 import { handleInitialData } from "./actions/decks";
+import { setNotification } from "./utils/notifications";
 import { createStore } from 'redux';
 import Decks from './components/Decks';
 import AddDeck from './components/AddDeck';
@@ -25,6 +26,7 @@ const Stack = createStackNavigator();
 
 export default class App extends React.Component {
   componentDidMount() {
+    setNotification();
     store.dispatch(handleInitialData());
   }
 
@@ -51,10 +53,15 @@ export default class App extends React.Component {
                 name="Add New Card"
                 component={AddNewCard}
                 options={({ route }) => {
-                  return { title: route.params.name };
+                  return { title: "Add New Card   " };
                 }}
               />
-              <Stack.Screen name="Take a Quiz" component={TakeQuiz} />
+              <Stack.Screen
+                name="Take a Quiz"
+                component={TakeQuiz}
+                options={{
+                  title: "Take a Quiz "
+                }} />
             </Stack.Navigator>
           </View>
         </Provider>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
+import { clearNotifications, setNotification } from "../utils/notifications";
 import Button from './Button';
 
 
@@ -67,6 +68,7 @@ class TakeQuiz extends React.Component {
       }
 
       if (cardCounter === deck.cards.length - 1) {
+        clearNotifications().then(setNotification);
         quizStat = true;
       } else {
         cardCounter++;
