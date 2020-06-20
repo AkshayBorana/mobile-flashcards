@@ -54,4 +54,5 @@ export function handleInitialData() {
     getDecks().then(decks => {
       dispatch(addDecks(decks || []));
     });
-};
+  }
+}
